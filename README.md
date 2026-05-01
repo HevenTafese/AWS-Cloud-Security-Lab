@@ -29,14 +29,13 @@ EC2 Windows Server (Target)          S3 Honeypot Bucket
     CloudTrail (Activity logging — eu-west-2, multi-region)
         |
         ▼
-    GuardDuty (Threat detection engine — 30-day trial)
+    GuardDuty (Threat detection engine 30-day trial)
         |
         ▼
     Security Hub (Aggregated findings dashboard)
 ```
 
----
-
+![Lab Architecture](docs/screenshots/Labarch.gif)
 ## Lab Components
 
 | Component | Service | Purpose |
