@@ -62,15 +62,15 @@ CloudTrail was configured as a multi-region trail covering eu-west-2 with logs d
 
 GuardDuty was enabled with S3 Protection active. It began monitoring CloudTrail logs, DNS queries and VPC flow logs immediately with no additional configuration required.
 
-![GuardDuty successfully enabled](docs/screenshots/guardduty-enabled.PNG)
+![GuardDuty successfully enabled](docs/screenshots/GuardDutyEnabled.PNG)
 
 ### Phase 3: Cloud Target Deployment
 
 A Windows Server 2022 EC2 instance was launched in eu-west-2 with RDP access enabled. An IAM role with SSM permissions was attached and the instance was connected to via Remote Desktop.
 
-![EC2 instance launched](docs/screenshots/ec2-launched.PNG)
+![EC2 instance launched](docs/screenshots/louchinstance.PNG)
 
-![Windows Server running in AWS](docs/screenshots/windows-server.PNG)
+![Windows Server running in AWS](docs/screenshots/windowsserver.png)
 
 ### Phase 4: Attack Simulation
 
@@ -90,7 +90,7 @@ hydra -l Administrator -P /usr/share/wordlists/rockyou.txt rdp://<EC2-PUBLIC-IP>
 
 GuardDuty detected both attacks in real time.
 
-![GuardDuty detecting live Hydra brute force](docs/screenshots/attack-detection.PNG)
+![GuardDuty detecting live Hydra brute force](docs/screenshots/Result trail 1.PNG)
 
 ### Phase 5: Honeypot Deployment
 
@@ -104,13 +104,13 @@ curl https://soc-lab-backup-credentials.s3.eu-west-2.amazonaws.com/password.txt
 
 GuardDuty raised a **High severity** finding immediately: `Amazon S3 Public Anonymous Access was granted for the S3 bucket soc-lab-backup-credentials`.
 
-![Honeypot triggered — High severity GuardDuty finding](docs/screenshots/honeypot-finding.PNG)
+![Honeypot triggered — High severity GuardDuty finding](docs/screenshots/GuardDutyResultshonepot.PNG)
 
 ### Phase 6: Security Hub Aggregation
 
 Security Hub consolidated all GuardDuty findings into a single dashboard with severity classification. By the end of the session the environment had generated 20+ findings across Critical, High, Medium and Low categories.
 
-![Security Hub findings dashboard](docs/screenshots/security-hub-results.PNG)
+![Security Hub findings dashboard](docs/screenshots/SecurityHubResults.PNG)
 
 ---
 
