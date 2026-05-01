@@ -56,21 +56,21 @@ EC2 Windows Server (Target)          S3 Honeypot Bucket
 
 CloudTrail was configured as a multi-region trail covering eu-west-2 with logs delivered to a dedicated S3 bucket. This provides the activity record that GuardDuty analyses.
 
-![CloudTrail active and logging](docs/screenshots/cloudtrail.png)
+![CloudTrail active and logging](docs/screenshots/cloudtrail.PNG)
 
 ### Phase 2: Threat Detection
 
 GuardDuty was enabled with S3 Protection active. It began monitoring CloudTrail logs, DNS queries and VPC flow logs immediately with no additional configuration required.
 
-![GuardDuty successfully enabled](docs/screenshots/guardduty-enabled.png)
+![GuardDuty successfully enabled](docs/screenshots/guardduty-enabled.PNG)
 
 ### Phase 3: Cloud Target Deployment
 
 A Windows Server 2022 EC2 instance was launched in eu-west-2 with RDP access enabled. An IAM role with SSM permissions was attached and the instance was connected to via Remote Desktop.
 
-![EC2 instance launched](docs/screenshots/ec2-launched.png)
+![EC2 instance launched](docs/screenshots/ec2-launched.PNG)
 
-![Windows Server running in AWS](docs/screenshots/windows-server.png)
+![Windows Server running in AWS](docs/screenshots/windows-server.PNG)
 
 ### Phase 4: Attack Simulation
 
@@ -90,7 +90,7 @@ hydra -l Administrator -P /usr/share/wordlists/rockyou.txt rdp://<EC2-PUBLIC-IP>
 
 GuardDuty detected both attacks in real time.
 
-![GuardDuty detecting live Hydra brute force](docs/screenshots/attack-detection.png)
+![GuardDuty detecting live Hydra brute force](docs/screenshots/attack-detection.PNG)
 
 ### Phase 5: Honeypot Deployment
 
@@ -104,13 +104,13 @@ curl https://soc-lab-backup-credentials.s3.eu-west-2.amazonaws.com/password.txt
 
 GuardDuty raised a **High severity** finding immediately: `Amazon S3 Public Anonymous Access was granted for the S3 bucket soc-lab-backup-credentials`.
 
-![Honeypot triggered — High severity GuardDuty finding](docs/screenshots/honeypot-finding.png)
+![Honeypot triggered — High severity GuardDuty finding](docs/screenshots/honeypot-finding.PNG)
 
 ### Phase 6: Security Hub Aggregation
 
 Security Hub consolidated all GuardDuty findings into a single dashboard with severity classification. By the end of the session the environment had generated 20+ findings across Critical, High, Medium and Low categories.
 
-![Security Hub findings dashboard](docs/screenshots/security-hub-results.png)
+![Security Hub findings dashboard](docs/screenshots/security-hub-results.PNG)
 
 ---
 
